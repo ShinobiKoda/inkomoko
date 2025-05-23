@@ -8,6 +8,6 @@ export const signUpSchema = z.object({
 
 export const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
-  password: z.string().min(6, "Incorrect Password"),
+  password: z.string().min(1, "Incorrect Password"),
   keepMeSignedIn: z.boolean().optional(), // Added optional field
 });

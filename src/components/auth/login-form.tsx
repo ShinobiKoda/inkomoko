@@ -1,5 +1,9 @@
 "use client";
 
+import { useState } from "react";
+import { ClipLoader } from "react-spinners";
+import { useRouter } from "next/navigation";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -16,8 +20,12 @@ import { Input } from "@/components/ui/input";
 import { loginSchema } from "@/schemas/auth.schema";
 import { FadeIn } from "@/components/animations/motion";
 import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "sonner";
 
 export function LoginForm() {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -27,10 +35,21 @@ export function LoginForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof loginSchema>) {
+  const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     console.log("Form Values:", values);
-    // Handle login logic here
-  }
+  
+    setLoading(true); // Start loading
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate delay
+    setLoading(false); // Stop loading
+  
+    form.reset(); // Reset form
+    toast.success("Logging In", {
+      description: `Logged in as ${values.email}`
+    });
+  
+    router.push("/dashboard");
+  };
+  
 
   return (
     <FadeIn>
@@ -90,13 +109,27 @@ export function LoginForm() {
                     onCheckedChange={field.onChange} // Map `onCheckedChange` to `onChange`
                     name={field.name} // Pass the name explicitly
                     ref={field.ref} // Pass the ref explicitly
-                    
                   />
                   <FormLabel>Keep me signed in</FormLabel>
                 </FormItem>
               )}
             />
-            <Button variant="default" type="submit" className="w-full">Login</Button>
+            <Button className="w-full" type="submit" disabled={loading}>
+              {loading ? (
+                <>
+                  <ClipLoader
+                    color="#fff"
+                    loading={loading}
+                    size={20}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                  />
+                  Logging In
+                </>
+              ) : (
+                "Login"
+              )}
+            </Button>
           </form>
         </div>
       </Form>
