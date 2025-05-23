@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
-
+import {  FaGoogle } from 'react-icons/fa';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -21,6 +21,7 @@ import { loginSchema } from "@/schemas/auth.schema";
 import { FadeIn } from "@/components/animations/motion";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export function LoginForm() {
   const [loading, setLoading] = useState(false);
@@ -37,32 +38,30 @@ export function LoginForm() {
 
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     console.log("Form Values:", values);
-  
+
     setLoading(true); // Start loading
     await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate delay
     setLoading(false); // Stop loading
-  
+
     form.reset(); // Reset form
     toast.success("Logging In", {
-      description: `Logged in as ${values.email}`
+      description: `Logged in as ${values.email}`,
     });
-  
+
     router.push("/dashboard");
   };
-  
 
   return (
     <FadeIn>
-      <Form {...form}>
-        <div className="w-full h-screen flex flex-col items-center justify-center">
-          <h1 className="text-3xl italic mb-8">
-            <span className="font-bold">INKO</span>
-            <span className="text-[#FB3F6C]">MOKO</span>{" "}
-          </h1>
-
+      <div className="w-full flex flex-col items-center justify-center h-screen max-w-[400px] mx-auto gap-8 px-4">
+        <h1 className="text-3xl italic font-bold">
+          <span className="text-[#FB3F6C]">INKO</span>
+          <span>MOKO</span>
+        </h1>
+        <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-4 w-full max-w-[400px] flex flex-col gap-3"
+            className="space-y-4 w-full flex flex-col gap-3"
           >
             <FormField
               name="email"
@@ -84,9 +83,9 @@ export function LoginForm() {
                 <FormItem>
                   <div className="flex items-center justify-between">
                     <FormLabel>Password</FormLabel>
-                    <span className="text-sm text-[#FF698D]">
+                    <Link href={"/forgot-password"} className="text-sm text-[#FF698D]">
                       Forgot Password?
-                    </span>
+                    </Link>
                   </div>
                   <FormControl>
                     <Input
@@ -131,8 +130,15 @@ export function LoginForm() {
               )}
             </Button>
           </form>
+        </Form>
+        <div className="flex w-full items-center gap-3 justify-center text-[#999DA3]">
+          <span className="h-[0.4px] bg-[#999DA3] flex-1"></span>
+          <span className="flex-1">Or sign in with</span>
+          <span className="h-[0.4px] bg-[#999DA3] flex-1"></span>
         </div>
-      </Form>
+        <Button variant="outline" className="w-full"><FaGoogle />Continue With Google</Button>
+        <Link href="/signup" className="text-[#FB3F6C] font-bold hover:opacity-90 cursor-pointer">Create an Account</Link>
+      </div>
     </FadeIn>
   );
 }
