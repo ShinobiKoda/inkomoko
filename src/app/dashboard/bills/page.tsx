@@ -1,10 +1,12 @@
 import React from 'react'
 import { OverviewPage } from '@/components/dashboard/overview'
+import { SidebarLayoutWrapper } from "@/components/layout/sidebar";
 
 export default function page() {
   return (
-    <div>
+    <SidebarLayoutWrapper useSidebar={true}>
       <OverviewPage />
-    </div>
+      </SidebarLayoutWrapper>
+
   )
 }

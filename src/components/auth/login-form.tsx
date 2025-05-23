@@ -50,7 +50,7 @@ export function LoginForm() {
       description: `Logged in as ${values.email}`,
     });
 
-    router.push("/dashboard");
+    router.push("/dashboard/overview");
   };
 
   return (

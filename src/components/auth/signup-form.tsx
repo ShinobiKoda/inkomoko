@@ -49,7 +49,7 @@ export function SignUpForm() {
       description: `Logged in as ${values.name}`,
     });
 
-    router.push("/dashboard");
+    router.push("/dashboard/overview");
   };
 
   return (

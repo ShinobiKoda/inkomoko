@@ -20,11 +20,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${ubuntuFont.variable} antialiased`}>
-        <main>{children}</main>
-        <Toaster />
-      </body>
-    </html>
+      <html lang="en">
+        <body className={`${ubuntuFont.variable} antialiased`}>
+          <main>
+            {children}
+          </main>
+          <Toaster />
+        </body>
+      </html>
   );
 }
