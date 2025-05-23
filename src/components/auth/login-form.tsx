@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
-import {  FaGoogle } from 'react-icons/fa';
+import { FaGoogle } from "react-icons/fa";
+import { Eye, EyeOff } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -25,6 +26,7 @@ import Link from "next/link";
 
 export function LoginForm() {
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
   const form = useForm({
@@ -83,17 +85,27 @@ export function LoginForm() {
                 <FormItem>
                   <div className="flex items-center justify-between">
                     <FormLabel>Password</FormLabel>
-                    <Link href={"/forgot-password"} className="text-sm text-[#FF698D]">
+                    <span className="text-sm text-[#FF698D]">
                       Forgot Password?
-                    </Link>
+                    </span>
                   </div>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="Enter your password"
-                      {...field}
-                    />
-                  </FormControl>
+                  <div className="flex items-center justify-between border rounded-md pr-2 ">
+                    <FormControl>
+                      <Input
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Enter your password"
+                        {...field}
+                        className="border-0 focus-visible:border-0 focus-visible:ring-0 focus-visible:ring-transparent"
+                      />
+                    </FormControl>
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                    
+                    >
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                   <FormMessage />
                 </FormItem>
               )}
@@ -136,8 +148,16 @@ export function LoginForm() {
           <span className="flex-1">Or sign in with</span>
           <span className="h-[0.4px] bg-[#999DA3] flex-1"></span>
         </div>
-        <Button variant="outline" className="w-full"><FaGoogle />Continue With Google</Button>
-        <Link href="/signup" className="text-[#FB3F6C] font-bold hover:opacity-90 cursor-pointer">Create an Account</Link>
+        <Button variant="outline" className="w-full">
+          <FaGoogle />
+          Continue With Google
+        </Button>
+        <Link
+          href="/signup"
+          className="text-[#FB3F6C] font-bold hover:opacity-90 cursor-pointer"
+        >
+          Create an Account
+        </Link>
       </div>
     </FadeIn>
   );
