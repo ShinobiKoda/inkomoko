@@ -1,9 +1,9 @@
 import React from 'react'
-
+import { ForgotPasswordForm } from '@/components/auth/forgot-password'
 export default function page() {
   return (
     <div>
-      Forgot Password Page
+      <ForgotPasswordForm />
     </div>
   )
 }

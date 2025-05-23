@@ -11,3 +11,7 @@ export const loginSchema = z.object({
   password: z.string().min(1, "Incorrect Password"),
   keepMeSignedIn: z.boolean().optional(), // Added optional field
 });
+
+export const forgotPasswordSchema = z.object({
+  email: z.string().email("Invalid email address"),
+})

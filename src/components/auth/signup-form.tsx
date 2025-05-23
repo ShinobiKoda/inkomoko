@@ -54,7 +54,7 @@ export function SignUpForm() {
 
   return (
     <FadeIn>
-      <div className="w-full flex flex-col items-center justify-center h-screen max-w-[400px] mx-auto gap-8 px-4">
+      <div className="w-full flex flex-col items-center justify-center h-screen max-w-[400px] mx-auto gap-8 px-4 my-8">
         <h1 className="text-3xl italic font-bold">
           <span className="text-[#FB3F6C]">INKO</span>
           <span>MOKO</span>
@@ -139,7 +139,7 @@ export function SignUpForm() {
         </Form>
         <div className="flex w-full items-center gap-3 justify-center text-[#999DA3]">
           <span className="h-[0.4px] bg-[#999DA3] flex-1"></span>
-          <span className="flex-1">Or sign up with</span>
+          <span className="flex-1 text-[14px]">Or sign up with</span>
           <span className="h-[0.4px] bg-[#999DA3] flex-1"></span>
         </div>
         <Button variant="outline" className="w-full">

@@ -85,9 +85,9 @@ export function LoginForm() {
                 <FormItem>
                   <div className="flex items-center justify-between">
                     <FormLabel>Password</FormLabel>
-                    <span className="text-sm text-[#FF698D]">
+                    <Link className="text-sm text-[#FF698D]" href="/forgot-password">
                       Forgot Password?
-                    </span>
+                    </Link>
                   </div>
                   <div className="flex items-center justify-between border rounded-md pr-2 ">
                     <FormControl>
@@ -145,7 +145,7 @@ export function LoginForm() {
         </Form>
         <div className="flex w-full items-center gap-3 justify-center text-[#999DA3]">
           <span className="h-[0.4px] bg-[#999DA3] flex-1"></span>
-          <span className="flex-1">Or sign in with</span>
+          <span className="flex-1 text-[14px]">Or sign in with</span>
           <span className="h-[0.4px] bg-[#999DA3] flex-1"></span>
         </div>
         <Button variant="outline" className="w-full">
