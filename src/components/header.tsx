@@ -6,7 +6,7 @@ import { Search, Mic, Bell } from "lucide-react";
 
 export function Header() {
   return (
-    <div className="w-full bg-gray-200 py-2">
+    <div className="w-full bg-gray-200 py-2 px-4">
       <div className="flex items-center justify-end w-full gap-6">
         <div className="bg-white rounded-3xl hidden md:flex items-center px-2">
           <Search className="text-gray-300 h-6 w-6" />
@@ -15,12 +15,12 @@ export function Header() {
             placeholder="Search..."
             className=" border-0 focus-visible:border-0 focus-visible:ring-0 focus-visible:ring-transparent"
           />
-          <Mic className="text-blue-300 h-6 w-6" />
+          <Mic className="text-blue-300 h-6 w-6 cursor-pointer hover:opacity-70" />
         </div>
-        <Bell className="text-[#616161]"/>
+        <Bell className="text-[#616161] cursor-pointer hover:opacity-70"/>
         <div className="flex items-center gap-2">
           <p className="flex flex-col">
-            <span>Bonte</span>
+            <span className="font-bold">Bonte</span>
             <span className="text-[#757575]">UI/UX Designer</span>
           </p>
           {/* <Image
