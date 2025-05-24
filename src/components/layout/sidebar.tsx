@@ -2,6 +2,7 @@
 
 import { Calendar, Home, Inbox, Search, Settings, Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { Header } from "../header";
 
 import {
   Sidebar,
@@ -60,14 +61,8 @@ export function SidebarLayout({
   const { toggleSidebar } = useSidebar();
 
   return (
-    <div className="flex flex-col md:flex-row">
-      {/* Hamburger menu for smaller screens */}
-      <button
-        className="md:hidden p-2 text-white bg-[#FF698D] fixed top-4 left-4 z-50"
-        onClick={toggleSidebar}
-      >
-        <Menu />
-      </button>
+    <div className="flex flex-row w-full">
+      {/* Sidebar */}
       <Sidebar>
         <SidebarHeader>
           <h1 className="text-2xl font-bold mb-4">
@@ -101,7 +96,21 @@ export function SidebarLayout({
           </SidebarGroup>
         </SidebarContent>
       </Sidebar>
-      <div className="flex-1 mt-16 md:mt-0">{children}</div>
+
+      {/* Main content area */}
+      <div className="flex flex-col w-full">
+        {/* Hamburger menu for smaller screens */}
+        <button
+          className="md:hidden p-2 text-white bg-[#FF698D] fixed top-4 left-4 z-50"
+          onClick={toggleSidebar}
+        >
+          <Menu />
+        </button>
+        {/* Header */}
+        <Header />
+        {/* Page content */}
+        <div className="flex-1">{children}</div>
+      </div>
     </div>
   );
 }
